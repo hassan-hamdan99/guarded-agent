@@ -1,0 +1,26 @@
+[project]
+name = "guarded-agent"
+version = "0.1.0"
+description = "An LLM agent that writes to a real system safely: approval gates in code, read-after-write verification, PII allowlists and evals."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.110", "httpx>=0.27", "pydantic>=2.5"]
+
+[project.optional-dependencies]
+claude = ["anthropic>=1.0"]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+guarded-agent = "guarded_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
